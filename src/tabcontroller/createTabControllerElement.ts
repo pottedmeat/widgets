@@ -6,7 +6,7 @@ import TabController from './TabController';
  */
 export default function createTabControllerElement(): CustomElementDescriptor {
 	return {
-		tagName: 'dojo-tab-pane',
+		tagName: 'dojo-tab-controller',
 		widgetConstructor: TabController,
 		attributes: [
 			{
