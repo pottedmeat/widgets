@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+        body {
+            margin: 0;
+            padding: 10px 50px 50px;
+        }
+    </style>
+    <script src="https://rawgit.com/webcomponents/custom-elements/master/src/native-shim.js"></script>
+    <script src="../../../node_modules/@dojo/shim/util/amd.js"></script>
+    <script src="../../../node_modules/@dojo/loader/loader.min.js"></script>
+    <link rel="stylesheet" href="../styles/tabController.m.css">
+    <script>
+        require.config(shimAmdDependencies({
+            baseUrl: '../../../',
+            packages: [
+                { name: 'src', location: '_build' },
+                { name: 'cldrjs', location: 'node_modules/cldrjs' },
+                { name: 'globalize', location: 'node_modules/globalize', main: 'dist/globalize' }
+            ],
+            map: {
+                globalize: {
+                    'cldr': 'cldrjs/dist/cldr',
+                    'cldr/event': 'cldrjs/dist/cldr/event',
+                    'cldr/supplemental': 'cldrjs/dist/cldr/supplemental',
+                    'cldr/unresolved': 'cldrjs/dist/cldr/unresolved'
+                }
+            }
+        }));
+
+        require(['@dojo/shim/main'], function () {
+            require(['src/tabcontroller/example/element'], function () {
+            });
+        });
+    </script>
+</head>
+<body>
+<dojo-tab-controller activeindex="1">
+    <dojo-tab label="Tab 1" key="tab1"><span>Content 1</span></dojo-tab>
+    <dojo-tab label="Tab 2" key="tab2"><span>Content 2</span></dojo-tab>
+</dojo-tab-controller>
+<script>
+    setTimeout(function(){
+        const tabController = document.getElementsByTagName('dojo-tab-controller')[0];
+        tabController.activeIndex = 0;
+        console.log(tabController);
+        tabController.addEventListener('tabchange', function (index, key) {
+            console.log(arguments);
+            tabController.activeIndex = index;
+        });
+    }, 2000);
+</script>
+</body>
+</html>
