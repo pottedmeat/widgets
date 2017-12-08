@@ -20,10 +20,12 @@ export default function createTabElement(): CustomElementDescriptor {
 			},
 			{
 				attributeName: 'key'
+			},
+			{
+				attributeName: 'label'
 			}
 		],
 		properties: [
-			{ propertyName: 'label' },
 			{ propertyName: 'theme' }
 		]
 	};
